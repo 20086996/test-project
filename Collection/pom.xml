@@ -9,10 +9,9 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>day05</artifactId>
-    <packaging>jar</packaging>
+    <artifactId>Collection</artifactId>
 
-    <name>day05</name>
+    <name>Collection</name>
     <!-- FIXME change it to the project's website -->
     <url>http://www.example.com</url>
 
@@ -23,11 +22,10 @@
     </properties>
 
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/junit/junit -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.13</version>
+            <version>4.11</version>
         </dependency>
     </dependencies>
 
