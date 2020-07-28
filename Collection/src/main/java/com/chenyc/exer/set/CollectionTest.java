@@ -1,4 +1,4 @@
-package com.chenyc.setExer;
+package com.chenyc.exer.set;
 
 import org.junit.Test;
 
@@ -21,7 +21,7 @@ public class CollectionTest {
         coll.add(343);
         coll.add(343);
 
-        coll.forEach(System.out::println);
+        //coll.forEach(System.out::println);
     }
 
 

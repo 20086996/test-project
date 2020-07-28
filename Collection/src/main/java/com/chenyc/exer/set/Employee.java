@@ -1,4 +1,4 @@
-package com.chenyc.exer;
+package com.chenyc.exer.set;
 
 /**
  * 定义一个Employee类。

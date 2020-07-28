@@ -1,4 +1,4 @@
-package com.chenyc.exer;
+package com.chenyc.exer.list;
 
 import org.junit.Test;
 
