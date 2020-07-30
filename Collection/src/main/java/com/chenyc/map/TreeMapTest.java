@@ -50,6 +50,7 @@ public class TreeMapTest {
                 throw new RuntimeException("输入的类型不匹配！");
             }
         });
+
         User u1 = new User("Tom",23);
         User u2 = new User("Jerry",32);
         User u3 = new User("Jack",20);

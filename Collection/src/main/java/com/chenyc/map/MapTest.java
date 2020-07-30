@@ -49,6 +49,86 @@ import java.util.*;
  *       补充：关于情况2和情况3：此时key1-value1和原来的数据以链表的方式存储。
  *
  *      在不断的添加过程中，会涉及到扩容问题，当超出临界值(且要存放的位置非空)时，扩容。默认的扩容方式：扩容为原来容量的2倍，并将原有的数据复制过来。
+ *      DEFAULT_INITIAL_CAPACITY : HashMap的默认容量，16
+ *      DEFAULT_LOAD_FACTOR：HashMap的默认加载因子：0.75
+ *      threshold：扩容的临界值，=容量*填充因子：16 * 0.75 => 12
+ *      TREEIFY_THRESHOLD：Bucket中链表长度大于该默认值，转化为红黑树:8
+ *      MIN_TREEIFY_CAPACITY：桶中的Node被树化时最小的hash表容量:64
+        public HashMap() {
+             this(DEFAULT_INITIAL_CAPACITY, DEFAULT_LOAD_FACTOR);
+         }
+
+ *       public HashMap(int initialCapacity, float loadFactor) {
+ *         if (initialCapacity < 0)
+ *             throw new IllegalArgumentException("Illegal initial capacity: " +
+ *                                                initialCapacity);
+ *         //是否大于整数最大值
+ *         if (initialCapacity > MAXIMUM_CAPACITY)
+ *             initialCapacity = MAXIMUM_CAPACITY;
+ *         if (loadFactor <= 0 || Float.isNaN(loadFactor))
+ *             throw new IllegalArgumentException("Illegal load factor: " +
+ *                                                loadFactor);
+ *
+ *         // Find a power of 2 >= initialCapacity
+ *         1<16向左一移一位等于2，再移一位4，以此类崔8 、16 、32.。。。。
+ *         int capacity = 1;
+ *         while (capacity < initialCapacity)
+ *             capacity <<= 1;
+ *         // loadFactor= 0.75，loadFactor加载因子
+ *         this.loadFactor = loadFactor;
+ *         //第一次进来capacity=16，loadFactor=0.75，capacity * loadFactor=12，threshold=12
+ *         //threshold我们叫做临界值，影响扩容，数组长度超过12的时候开始扩容
+ *         threshold = (int)Math.min(capacity * loadFactor, MAXIMUM_CAPACITY + 1);
+ *         //创建一个长度为16的Entry数组，transient Entry<K,V>[] table;
+ *         table = new Entry[capacity];
+ *         useAltHashing = sun.misc.VM.isBooted() &&
+ *                 (capacity >= Holder.ALTERNATIVE_HASHING_THRESHOLD);
+ *         init();
+ *     }
+ *
+ *     public V put(K key, V value) {
+ *         //判断key是否为null，如果是null则调用putForNullKey方法
+ *         if (key == null)
+ *             return putForNullKey(value);
+ *         //计算hash值
+ *         int hash = hash(key);
+ *         //计算存放位置，return h & (length-1);，用hash值和数组长度做&运算，得到数组中的位置
+ *         int i = indexFor(hash, table.length);
+ *         for (Entry<K,V> e = table[i]; e != null; e = e.next) {
+ *             Object k;
+ *             if (e.hash == hash && ((k = e.key) == key || key.equals(k))) {
+ *                 V oldValue = e.value;
+ *                 e.value = value;
+ *                 e.recordAccess(this);
+ *                 return oldValue;
+ *             }
+ *         }
+ *
+ *         modCount++;
+ *         addEntry(hash, key, value, i);
+ *         return null;
+ *     }
+ *
+ *    //遍历table，看哪个key为null，将value赋值，然后返回旧value值，如果没有null则新建一个
+ *    private V putForNullKey(V value) {
+ *         for (Entry<K,V> e = table[0]; e != null; e = e.next) {
+ *             if (e.key == null) {
+ *                 V oldValue = e.value;
+ *                 e.value = value;
+ *                 e.recordAccess(this);
+ *                 return oldValue;
+ *             }
+ *         }
+ *         modCount++;
+ *         addEntry(0, null, value, 0);
+ *         return null;
+ *     }
+
+ *
+ *
+ *
+ *
+ *
  *
  *      jdk8 相较于jdk7在底层实现方面的不同：
  *      1. new HashMap():底层没有创建一个长度为16的数组
