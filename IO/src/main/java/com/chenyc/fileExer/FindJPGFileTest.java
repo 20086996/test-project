@@ -1,9 +1,10 @@
-package com.chenyc.exer2;
+package com.chenyc.fileExer;
 
 import org.junit.Test;
 
 import java.io.File;
 import java.io.FilenameFilter;
+
 /**
  * 课后练习2：判断指定目录下是否有后缀名为.jpg的文件，如果有，就输出该文件名称
  * @author shkstart 邮箱：shkstart@126.com

@@ -1,4 +1,4 @@
-package com.chenyc.java;
+package com.chenyc.generic;
 
 import org.junit.Test;
 
@@ -66,4 +66,13 @@ public class GenericTest1 {
 
         System.out.println(list);
     }
+
+//    public static <E>  List<E> copyFromArrayToList(E[] arr){
+//        ArrayList<E> list = new ArrayList<>();
+//
+//        for(E e : arr){
+//            list.add(e);
+//        }
+//        return list;
+//    }
 }

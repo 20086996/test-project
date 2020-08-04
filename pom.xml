@@ -11,6 +11,7 @@
     <modules>
         <module>collection</module>
         <module>generic</module>
+        <module>IO</module>
     </modules>
 
     <dependencyManagement>

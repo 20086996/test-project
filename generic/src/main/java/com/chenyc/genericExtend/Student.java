@@ -1,4 +1,4 @@
-package com.chenyc.java2;
+package com.chenyc.genericExtend;
 
 /**
  * @author shkstart

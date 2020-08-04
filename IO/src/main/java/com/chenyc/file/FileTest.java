@@ -1,4 +1,4 @@
-package com.chenyc.java3;
+package com.chenyc.file;
 
 import org.junit.Test;
 
@@ -22,7 +22,7 @@ import java.util.Date;
  * @create 2019 下午 4:05
  */
 public class FileTest {
-    /*
+    /**
     1.如何创建File类的实例
         File(String filePath)
         File(String parentPath,String childPath)
@@ -38,9 +38,10 @@ public class FileTest {
      */
     @Test
     public void test1(){
-        //构造器1
-        File file1 = new File("hello.txt");//相对于当前module
-        File file2 =  new File("D:\\workspace_idea1\\JavaSenior\\day08\\he.txt");
+        //构造器1,相对路径，相对于当前module
+        File file1 = new File("hello.txt");
+        //绝对路径
+        File file2 =  new File("D:\\IdeaProjects\\test-project\\IO\\src\\hello.txt");
 
         System.out.println(file1);
         System.out.println(file2);
@@ -52,6 +53,13 @@ public class FileTest {
         //构造器3：
         File file4 = new File(file3,"hi.txt");
         System.out.println(file4);
+
+        /**
+         * hello.txt
+         * D:\IdeaProjects\test-project\IO\src\hello.txt
+         * D:\workspace_idea1\JavaSenior
+         * D:\workspace_idea1\JavaSenior\hi.txt
+         * */
     }
 
     /*
@@ -79,6 +87,14 @@ public File[] listFiles() ：获取指定目录下的所有文件或者文件目
         System.out.println(file1.getParent());
         System.out.println(file1.length());
         System.out.println(new Date(file1.lastModified()));
+        /**
+        * D:\IdeaProjects\test-project\IO\hello.txt
+         * hello.txt
+         * hello.txt
+         * null
+         * 10
+         * Thu Jan 01 08:00:00 CST 1970
+        * */
 
         System.out.println();
 
@@ -88,15 +104,35 @@ public File[] listFiles() ：获取指定目录下的所有文件或者文件目
         System.out.println(file2.getParent());
         System.out.println(file2.length());
         System.out.println(file2.lastModified());
+
+        /**
+         * d:\io\hi.txt
+         * d:\io\hi.txt
+         * hi.txt
+         * d:\io
+         * 0
+         * 0
+         * */
     }
     @Test
     public void test3(){
-        File file = new File("D:\\workspace_idea1\\JavaSenior");
+        File file = new File("D:\\IdeaProjects\\test-project");
 
         String[] list = file.list();
         for(String s : list){
             System.out.println(s);
         }
+        /**
+         * .git
+         * .gitignore
+         * .idea
+         * collection
+         * generic
+         * IO
+         * jdbc.properties
+         * pom.xml
+         * test-project.iml
+         * */
 
         System.out.println();
 
@@ -104,6 +140,17 @@ public File[] listFiles() ：获取指定目录下的所有文件或者文件目
         for(File f : files){
             System.out.println(f);
         }
+        /**
+        * D:\IdeaProjects\test-project\.git
+         * D:\IdeaProjects\test-project\.gitignore
+         * D:\IdeaProjects\test-project\.idea
+         * D:\IdeaProjects\test-project\collection
+         * D:\IdeaProjects\test-project\generic
+         * D:\IdeaProjects\test-project\IO
+         * D:\IdeaProjects\test-project\jdbc.properties
+         * D:\IdeaProjects\test-project\pom.xml
+         * D:\IdeaProjects\test-project\test-project.iml
+        * */
 
     }
     /*
@@ -132,7 +179,7 @@ public boolean isHidden() ：判断是否隐藏
     @Test
     public void test5(){
         File file1 = new File("hello.txt");
-        file1 = new File("hello1.txt");
+        //file1 = new File("hello1.txt");
 
         System.out.println(file1.isDirectory());
         System.out.println(file1.isFile());
@@ -141,16 +188,34 @@ public boolean isHidden() ：判断是否隐藏
         System.out.println(file1.canWrite());
         System.out.println(file1.isHidden());
 
+        /**
+         *
+         false
+         true
+         true
+         true
+         true
+         false
+         * */
+
         System.out.println();
 
-        File file2 = new File("d:\\io");
-        file2 = new File("d:\\io1");
+        File file2 = new File("D:\\IdeaProjects\\test-project");
+        //file2 = new File("D:\\IdeaProjects\\test-project1");
         System.out.println(file2.isDirectory());
         System.out.println(file2.isFile());
         System.out.println(file2.exists());
         System.out.println(file2.canRead());
         System.out.println(file2.canWrite());
         System.out.println(file2.isHidden());
+        /**
+         * true
+         * false
+         * true
+         * true
+         * true
+         * false
+         * */
 
     }
     /*
@@ -178,6 +243,17 @@ public boolean delete()：删除文件或者文件夹
 
 
     }
+
+    /*
+创建硬盘中对应的文件或文件目录
+public boolean mkdir() ：创建文件目录。如果此文件目录存在，就不创建了。如果此文件目录的上层目录不存在，也不创建。
+public boolean mkdirs() ：创建文件目录。如果此文件目录存在，就不创建了。如果上层文件目录不存在，一并创建
+
+删除磁盘中的文件或文件目录
+public boolean delete()：删除文件或者文件夹
+删除注意事项：Java中的删除不走回收站。
+
+ */
     @Test
     public void test7(){
         //文件目录的创建

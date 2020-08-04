@@ -1,4 +1,4 @@
-package com.chenyc.exer2;
+package com.chenyc.fileExer;
 
 import org.junit.Test;
 

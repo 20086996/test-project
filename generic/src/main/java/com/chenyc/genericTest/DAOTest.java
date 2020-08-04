@@ -1,4 +1,4 @@
-package com.chenyc.java1;
+package com.chenyc.genericTest;
 
 import org.junit.Test;
 
