@@ -21,9 +21,9 @@ import java.io.*;
  * @author shkstart
  * @create 2019 下午 2:44
  */
-public class BufferedTest {
+public class BufferedInputOutputStreamTest {
 
-    /*
+    /**
     实现非文本文件的复制
      */
     @Test
@@ -145,13 +145,13 @@ public class BufferedTest {
 
         long end = System.currentTimeMillis();
 
-        System.out.println("复制操作花费的时间为：" + (end - start));//618 - 176
+        System.out.println("复制操作花费的时间为：" + (end - start));
+        //176
     }
 
 
-    /*
+    /**
     使用BufferedReader和BufferedWriter实现文本文件的复制
-
      */
     @Test
     public void testBufferedReaderBufferedWriter(){

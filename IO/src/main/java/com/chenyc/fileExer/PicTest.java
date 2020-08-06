@@ -71,7 +71,7 @@ public class PicTest {
         FileOutputStream fos = null;
         try {
             fis = new FileInputStream("爱情与友情secret.jpg");
-            fos = new FileOutputStream("爱情与友情4.jpg");
+            fos = new FileOutputStream("爱情与友情decrypt4.jpg");
 
             byte[] buffer = new byte[20];
             int len;

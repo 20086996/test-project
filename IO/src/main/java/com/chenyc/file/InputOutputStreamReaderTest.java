@@ -31,9 +31,9 @@ import java.io.*;
  * @author shkstart
  * @create 2019 下午 4:25
  */
-public class InputStreamReaderTest {
+public class InputOutputStreamReaderTest {
 
-    /*
+    /**
     此时处理异常的话，仍然应该使用try-catch-finally
     InputStreamReader的使用，实现字节的输入流到字符的输入流的转换
      */
@@ -56,7 +56,7 @@ public class InputStreamReaderTest {
 
     }
 
-    /*
+    /**
     此时处理异常的话，仍然应该使用try-catch-finally
 
     综合使用InputStreamReader和OutputStreamWriter

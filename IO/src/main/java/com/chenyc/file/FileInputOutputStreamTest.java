@@ -18,7 +18,7 @@ import java.io.*;
  */
 public class FileInputOutputStreamTest {
 
-    //使用字节流FileInputStream处理文本文件，可能出现乱码。
+    //使用字节流FileInputStream处理文本文件,有中文可能乱码，可能出现乱码。
     @Test
     public void testFileInputStream() {
         FileInputStream fis = null;
@@ -54,7 +54,7 @@ public class FileInputOutputStreamTest {
 
     }
 
-    /*
+    /**
     实现对图片的复制操作
      */
     @Test

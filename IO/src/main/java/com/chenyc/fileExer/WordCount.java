@@ -25,7 +25,7 @@ import java.util.Set;
  * @create 2019 下午 3:47
  */
 public class WordCount {
-    /*
+    /**
     说明：如果使用单元测试，文件相对路径为当前module
           如果使用main()测试，文件相对路径为当前工程
      */

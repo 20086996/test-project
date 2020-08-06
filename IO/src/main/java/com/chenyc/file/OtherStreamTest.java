@@ -15,7 +15,7 @@ import java.io.*;
  */
 public class OtherStreamTest {
 
-    /*
+    /**
     1.标准的输入、输出流
     1.1
     System.in:标准的输入流，默认从键盘输入
@@ -63,13 +63,11 @@ public class OtherStreamTest {
         }
     }
 
-    /*
+    /**
     2. 打印流：PrintStream 和PrintWriter
 
     2.1 提供了一系列重载的print() 和 println()
     2.2 练习：
-
-
 
      */
 
