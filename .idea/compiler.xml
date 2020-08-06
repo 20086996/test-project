@@ -9,6 +9,7 @@
         <module name="generic" />
         <module name="collection" />
         <module name="IO" />
+        <module name="Collection" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
