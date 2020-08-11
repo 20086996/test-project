@@ -13,6 +13,7 @@
         <module>generic</module>
         <module>IO</module>
         <module>socket</module>
+        <module>reflection</module>
     </modules>
 
     <dependencyManagement>

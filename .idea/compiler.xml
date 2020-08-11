@@ -6,11 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="generic" />
-        <module name="collection" />
         <module name="socket" />
+        <module name="generic" />
         <module name="IO" />
+        <module name="reflection" />
         <module name="Collection" />
+        <module name="collection" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
