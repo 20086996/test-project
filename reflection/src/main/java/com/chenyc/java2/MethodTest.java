@@ -25,12 +25,38 @@ public class MethodTest {
         for(Method m : methods){
             System.out.println(m);
         }
-        System.out.println();
+        System.out.println("*************************************************");
         //getDeclaredMethods():获取当前运行时类中声明的所有方法。（不包含父类中声明的方法）
         Method[] declaredMethods = clazz.getDeclaredMethods();
         for(Method m : declaredMethods){
             System.out.println(m);
         }
+
+        /**
+         * public java.lang.String com.chenyc.java1.Person.toString()
+         * public int com.chenyc.java1.Person.compareTo(java.lang.String)
+         * public int com.chenyc.java1.Person.compareTo(java.lang.Object)
+         * public void com.chenyc.java1.Person.info()
+         * public java.lang.String com.chenyc.java1.Person.display(java.lang.String,int) throws java.lang.NullPointerException,java.lang.ClassCastException
+         * public void com.chenyc.java1.Creature.eat()
+         * public final void java.lang.Object.wait() throws java.lang.InterruptedException
+         * public final void java.lang.Object.wait(long,int) throws java.lang.InterruptedException
+         * public final native void java.lang.Object.wait(long) throws java.lang.InterruptedException
+         * public boolean java.lang.Object.equals(java.lang.Object)
+         * public native int java.lang.Object.hashCode()
+         * public final native java.lang.Class java.lang.Object.getClass()
+         * public final native void java.lang.Object.notify()
+         * public final native void java.lang.Object.notifyAll()
+         * *************************************************
+         * public java.lang.String com.chenyc.java1.Person.toString()
+         * public int com.chenyc.java1.Person.compareTo(java.lang.String)
+         * public int com.chenyc.java1.Person.compareTo(java.lang.Object)
+         * public void com.chenyc.java1.Person.info()
+         * private static void com.chenyc.java1.Person.showDesc()
+         * private java.lang.String com.chenyc.java1.Person.show(java.lang.String)
+         * public java.lang.String com.chenyc.java1.Person.display(java.lang.String,int) throws java.lang.NullPointerException,java.lang.ClassCastException
+         * Disconnected from the target VM, address: '127.0.0.1:57644', transport: 'socket'
+         * */
     }
 
     /*
@@ -91,7 +117,17 @@ public class MethodTest {
             System.out.println();
         }
 
-
+        /**
+         * public	java.lang.String	toString()
+         * public	int	compareTo(java.lang.String args_0)
+         * public volatile	int	compareTo(java.lang.Object args_0)
+         * public	void	info()
+         * @com.chenyc.java1.MyAnnotation(value=hello)
+         * private    java.lang.String	show(java.lang.String args_0)
+         * public	java.lang.String	display(java.lang.String args_0,int args_1)throws java.lang.NullPointerException,java.lang.ClassCastException
+         * private static	void	showDesc()
+         *
+         * */
 
     }
 }

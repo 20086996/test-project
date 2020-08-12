@@ -16,22 +16,29 @@ public class FieldTest {
 
     @Test
     public void test1(){
-
         Class clazz = Person.class;
-
         //获取属性结构
         //getFields():获取当前运行时类及其父类中声明为public访问权限的属性
         Field[] fields = clazz.getFields();
         for(Field f : fields){
             System.out.println(f);
         }
-        System.out.println();
+        System.out.println("*************************************************");
 
         //getDeclaredFields():获取当前运行时类中声明的所有属性。（不包含父类中声明的属性）
         Field[] declaredFields = clazz.getDeclaredFields();
         for(Field f : declaredFields){
             System.out.println(f);
         }
+
+        /**
+         * public int com.chenyc.java1.Person.id
+         * public double com.chenyc.java1.Creature.weight
+         * *************************************************
+         * private java.lang.String com.chenyc.java1.Person.name
+         * int com.chenyc.java1.Person.age
+         * public int com.chenyc.java1.Person.id
+         * */
     }
 
     //权限修饰符  数据类型 变量名
@@ -54,7 +61,11 @@ public class FieldTest {
 
             System.out.println();
         }
-
+        /**
+         * private	java.lang.String	name
+         * 	        int	                age
+         * public	int	                id
+         * */
 
     }
 

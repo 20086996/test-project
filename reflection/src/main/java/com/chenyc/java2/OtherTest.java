@@ -1,6 +1,6 @@
 package com.chenyc.java2;
 
-import com.chenyc.java.Person;
+import com.chenyc.java1.Person;
 import org.junit.Test;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
@@ -27,12 +27,20 @@ public class OtherTest {
             System.out.println(c);
         }
 
-        System.out.println();
+        System.out.println("*******************************************");
         //getDeclaredConstructors():获取当前运行时类中声明的所有的构造器
         Constructor[] declaredConstructors = clazz.getDeclaredConstructors();
         for(Constructor c : declaredConstructors){
             System.out.println(c);
         }
+        /**
+         * public com.chenyc.java.Person()
+         * public com.chenyc.java.Person(java.lang.String,int)
+         * *******************************************
+         * private com.chenyc.java.Person(java.lang.String)
+         * public com.chenyc.java.Person()
+         * public com.chenyc.java.Person(java.lang.String,int)
+         * */
 
     }
 
@@ -46,6 +54,9 @@ public class OtherTest {
 
         Class superclass = clazz.getSuperclass();
         System.out.println(superclass);
+        /**
+         * class com.chenyc.java1.Creature
+         * */
     }
 
     /*
@@ -58,12 +69,13 @@ public class OtherTest {
 
         Type genericSuperclass = clazz.getGenericSuperclass();
         System.out.println(genericSuperclass);
+        /**
+         * com.chenyc.java1.Creature<java.lang.String>
+         * */
     }
 
     /*
     获取运行时类的带泛型的父类的泛型
-
-
     代码：逻辑性代码  vs 功能性代码
      */
     @Test
@@ -76,6 +88,9 @@ public class OtherTest {
         Type[] actualTypeArguments = paramType.getActualTypeArguments();
 //        System.out.println(actualTypeArguments[0].getTypeName());
         System.out.println(((Class)actualTypeArguments[0]).getName());
+        /**
+         * java.lang.String
+         * */
     }
 
     /*
@@ -90,13 +105,18 @@ public class OtherTest {
             System.out.println(c);
         }
 
-        System.out.println();
+        System.out.println("******************************************");
         //获取运行时类的父类实现的接口
         Class[] interfaces1 = clazz.getSuperclass().getInterfaces();
         for(Class c : interfaces1){
             System.out.println(c);
         }
-
+        /**
+         * interface java.lang.Comparable
+         * interface com.chenyc.java1.MyInterface
+         * ******************************************
+         * interface java.io.Serializable
+         * */
     }
     /*
         获取运行时类所在的包
@@ -108,6 +128,10 @@ public class OtherTest {
 
         Package pack = clazz.getPackage();
         System.out.println(pack);
+
+        /**
+         * package com.chenyc.java1
+         * */
     }
 
     /*
@@ -122,6 +146,10 @@ public class OtherTest {
         for(Annotation annos : annotations){
             System.out.println(annos);
         }
+
+        /**
+         * @com.chenyc.java1.MyAnnotation(value=hi)
+         * */
     }
 
 }

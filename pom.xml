@@ -14,6 +14,7 @@
         <module>IO</module>
         <module>socket</module>
         <module>reflection</module>
+        <module>proxy</module>
     </modules>
 
     <dependencyManagement>

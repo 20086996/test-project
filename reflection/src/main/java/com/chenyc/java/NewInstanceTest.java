@@ -49,29 +49,19 @@ public class NewInstanceTest {
                     classPath = "java.lang.Object";
                     break;
                 case 2:
-                    classPath = "com.atguigu.java.Person";
+                    classPath = "com.chenyc.java.Person";
                     break;
             }
 
             try {
-                Object obj = getInstance(classPath);
+                Class clazz =  Class.forName(classPath);
+                Object obj = clazz.newInstance();
                 System.out.println(obj);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-
-
-
     }
 
-    /*
-    创建一个指定类的对象。
-    classPath:指定类的全类名
-     */
-    public Object getInstance(String classPath) throws Exception {
-       Class clazz =  Class.forName(classPath);
-       return clazz.newInstance();
-    }
 
 }

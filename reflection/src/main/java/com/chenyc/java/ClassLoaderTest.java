@@ -47,17 +47,15 @@ public class ClassLoaderTest {
 
         //读取配置文件的方式二：使用ClassLoader
         //配置文件默认识别为：当前module的src下
-        String path = ClassLoaderTest.class.getClassLoader().getResource("").getPath();
-        System.out.println(path);
 
         ClassLoader classLoader = ClassLoaderTest.class.getClassLoader();
-//        InputStream is = classLoader.getResourceAsStream("jdbc1.properties");
-//        pros.load(is);
-//
-//
-//        String user = pros.getProperty("user");
-//        String password = pros.getProperty("password");
-//        System.out.println("user = " + user + ",password = " + password);
+        InputStream is = classLoader.getResourceAsStream("jdbc1.properties");
+        pros.load(is);
+
+
+        String user = pros.getProperty("user");
+        String password = pros.getProperty("password");
+        System.out.println("user = " + user + ",password = " + password);
 
 
 
