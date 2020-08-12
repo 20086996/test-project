@@ -2,6 +2,8 @@ package com.chenyc.java;
 
 import org.junit.Test;
 
+import java.beans.PropertyChangeEvent;
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Properties;
 
@@ -29,9 +31,8 @@ public class ClassLoaderTest {
         System.out.println(classLoader3);
 
     }
-    /*
+    /**
     Properties：用来读取配置文件。
-
      */
     @Test
     public void test2() throws Exception {
@@ -39,20 +40,24 @@ public class ClassLoaderTest {
         Properties pros =  new Properties();
         //此时的文件默认在当前的module下。
         //读取配置文件的方式一：
-//        FileInputStream fis = new FileInputStream("jdbc.properties");
+        //FileInputStream fis = new FileInputStream("jdbc1.properties");
 //        FileInputStream fis = new FileInputStream("src\\jdbc1.properties");
 //        pros.load(fis);
 
+
         //读取配置文件的方式二：使用ClassLoader
         //配置文件默认识别为：当前module的src下
+        String path = ClassLoaderTest.class.getClassLoader().getResource("").getPath();
+        System.out.println(path);
+
         ClassLoader classLoader = ClassLoaderTest.class.getClassLoader();
-        InputStream is = classLoader.getResourceAsStream("jdbc1.properties");
-        pros.load(is);
-
-
-        String user = pros.getProperty("user");
-        String password = pros.getProperty("password");
-        System.out.println("user = " + user + ",password = " + password);
+//        InputStream is = classLoader.getResourceAsStream("jdbc1.properties");
+//        pros.load(is);
+//
+//
+//        String user = pros.getProperty("user");
+//        String password = pros.getProperty("password");
+//        System.out.println("user = " + user + ",password = " + password);
 
 
 

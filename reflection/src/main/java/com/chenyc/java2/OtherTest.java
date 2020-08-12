@@ -1,8 +1,7 @@
 package com.chenyc.java2;
 
-import com.atguigu.java1.Person;
+import com.chenyc.java.Person;
 import org.junit.Test;
-
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.ParameterizedType;
