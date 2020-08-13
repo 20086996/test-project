@@ -33,19 +33,24 @@ Optional.ofNullable(T t)：t可以为null
     @Test
     public void test2(){
         Girl girl = new Girl();
-//        girl = null;
+        girl = null;
         //ofNullable(T t)：t可以为null
         Optional<Girl> optionalGirl = Optional.ofNullable(girl);
         System.out.println(optionalGirl);
+
         //orElse(T t1):如果单前的Optional内部封装的t是非空的，则返回内部的t.
         //如果内部的t是空的，则返回orElse()方法中的参数t1.
         Girl girl1 = optionalGirl.orElse(new Girl("赵丽颖"));
         System.out.println(girl1);
-
+        /**
+         * Optional.empty
+         * Girl{name='赵丽颖'}
+         * */
     }
 
 
     public String getGirlName(Boy boy){
+
         return boy.getGirl().getName();
     }
 
@@ -57,6 +62,8 @@ Optional.ofNullable(T t)：t可以为null
         System.out.println(girlName);
 
     }
+
+
     //优化以后的getGirlName():
     public String getGirlName1(Boy boy){
         if(boy != null){
@@ -65,9 +72,7 @@ Optional.ofNullable(T t)：t可以为null
                 return girl.getName();
             }
         }
-
         return null;
-
     }
 
     @Test
@@ -83,7 +88,7 @@ Optional.ofNullable(T t)：t可以为null
     public String getGirlName2(Boy boy){
 
         Optional<Boy> boyOptional = Optional.ofNullable(boy);
-        //此时的boy1一定非空
+        //此时的boy1一定非空，空则用新new的
         Boy boy1 = boyOptional.orElse(new Boy(new Girl("迪丽热巴")));
 
         Girl girl = boy1.getGirl();
