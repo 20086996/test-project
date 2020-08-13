@@ -19,6 +19,7 @@ interface Human{
 class SuperMan implements Human{
     @Override
     public String getBelief() {
+        System.out.println("I believe I can fly!");
         return "I believe I can fly!";
     }
 
@@ -90,8 +91,7 @@ public class ProxyTest {
         //proxyInstance:代理类的对象
         Human proxyInstance = (Human) ProxyFactory.getProxyInstance(superMan);
         //当通过代理类对象调用方法时，会自动的调用被代理类中同名的方法
-        String belief = proxyInstance.getBelief();
-        System.out.println(belief);
+        proxyInstance.getBelief();
         proxyInstance.eat("四川麻辣烫");
 
         System.out.println("*****************************");
@@ -101,6 +101,18 @@ public class ProxyTest {
         ClothFactory proxyClothFactory = (ClothFactory) ProxyFactory.getProxyInstance(nikeClothFactory);
 
         proxyClothFactory.produceCloth();
+        /**
+         * ====================通用方法一====================
+         * I believe I can fly!
+         * ====================通用方法二====================
+         * ====================通用方法一====================
+         * 我喜欢吃四川麻辣烫
+         * ====================通用方法二====================
+         * *****************************
+         * ====================通用方法一====================
+         * Nike工厂生产一批运动服
+         * ====================通用方法二====================
+         * */
 
     }
 }
