@@ -9,10 +9,11 @@
         <outputRelativeToContentRoot value="true" />
         <module name="socket" />
         <module name="generic" />
-        <module name="IO" />
-        <module name="reflection" />
-        <module name="proxy" />
+        <module name="java8" />
         <module name="Collection" />
+        <module name="reflection" />
+        <module name="IO" />
+        <module name="proxy" />
         <module name="collection" />
       </profile>
     </annotationProcessing>

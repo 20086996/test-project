@@ -15,6 +15,7 @@
         <module>socket</module>
         <module>reflection</module>
         <module>proxy</module>
+        <module>java8</module>
     </modules>
 
     <dependencyManagement>
