@@ -114,4 +114,20 @@ public class StreamAPITest2 {
 
 
     }
+
+    //4-收集,练习
+    @Test
+    public void test5(){
+        Integer[] nums = new Integer[]{1,2,3,4,5};
+        Arrays.stream(nums).map(x->x*x).forEach(System.out::println);
+
+        List<Employee> employees = EmployeeData.getEmployees();
+        long count = employees.stream().count();
+        System.out.println("count="+count);
+
+        Optional<Integer> reduce = employees.stream().map(e -> 1).reduce(Integer::sum);
+        System.out.println("count="+reduce.get());
+
+
+    }
 }
