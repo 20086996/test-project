@@ -1,4 +1,4 @@
-package com.chenyc.socket;
+package com.chenyc.io;
 
 import java.net.MalformedURLException;
 import java.net.URL;

@@ -1,4 +1,4 @@
-package com.chenyc.socket;
+package com.chenyc.io;
 
 import org.junit.Test;
 

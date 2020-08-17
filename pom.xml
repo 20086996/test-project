@@ -16,6 +16,7 @@
         <module>reflection</module>
         <module>proxy</module>
         <module>java8</module>
+        <module>JUC</module>
     </modules>
 
     <dependencyManagement>

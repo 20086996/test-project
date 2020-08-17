@@ -1,4 +1,4 @@
-package com.chenyc.socket;
+package com.chenyc.io;
 
 import java.io.FileOutputStream;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package com.chenyc.socket;
+package com.chenyc.io;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
