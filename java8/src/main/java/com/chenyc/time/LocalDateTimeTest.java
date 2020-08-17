@@ -176,7 +176,17 @@ public class LocalDateTimeTest {
         Set<String> availableZoneIds = ZoneId.getAvailableZoneIds();
         availableZoneIds.forEach(System.out::println);
 
-//        LocalDateTime.now(ZoneId.of())
+        //America/Marigot
+        LocalDateTime now = LocalDateTime.now(ZoneId.of("America/Marigot"));
+        System.out.println(now);
+        //2020-08-17T00:43:42.258
+
+
+        LocalDateTime now1 = LocalDateTime.now(ZoneId.of("America/Marigot"));
+        ZonedDateTime zonedDateTime = now1.atZone(ZoneId.of("America/Marigot"));
+        System.out.println(zonedDateTime);
+        //2020-08-17T00:46:19.619-04:00[America/Marigot]
+
 
     }
 }

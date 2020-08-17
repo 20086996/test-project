@@ -155,7 +155,11 @@ public class StreamAPITest2 {
 
         System.out.println("--------------------------------------");
         Map<Boolean, List<Employee>> collect10 = employees.stream().collect(Collectors.partitioningBy(e -> e.getSalary() > 8000));
-        System.out.println(collect10);
+        System.out.println("collect10===="+collect10);
+
+
+        Double collect13 = employees.stream().collect(Collectors.averagingDouble(Employee::getSalary));
+        System.out.println("collect13===="+collect13);
 
         System.out.println("--------------------------------------");
         DoubleSummaryStatistics collect11 = employees.stream().collect(Collectors.summarizingDouble(Employee::getSalary));
