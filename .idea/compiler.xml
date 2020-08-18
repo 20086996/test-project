@@ -12,9 +12,9 @@
         <module name="java8" />
         <module name="IO" />
         <module name="reflection" />
+        <module name="thread" />
         <module name="proxy" />
         <module name="Collection" />
-        <module name="JUC" />
         <module name="collection" />
       </profile>
     </annotationProcessing>
