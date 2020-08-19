@@ -18,6 +18,7 @@
         <module>java8</module>
         <module>thread</module>
         <module>common-class</module>
+        <module>enum-annotation</module>
     </modules>
 
     <properties>
