@@ -17,8 +17,9 @@ package com.chenyc.thread;
  * 联系：public class Thread implements Runnable
  * 相同点：两种方式都需要重写run(),将线程要执行的逻辑声明在run()中。
  *
+ * @author chenyuancheng
  */
-public class ThreadTest1 {
+public class RunnableTest {
     public static void main(String[] args) {
         MyThread1 myThread1 = new MyThread1();
         Thread thread = new Thread(myThread1);

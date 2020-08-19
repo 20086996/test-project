@@ -5,6 +5,7 @@ import org.junit.Test;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
@@ -79,6 +80,7 @@ public class SimpleDateFormatTest {
             Future<?> submit = pool.submit(task);
         }
 
+        Thread.sleep(200);
         pool.shutdown();
 
     }
@@ -93,7 +95,7 @@ public class SimpleDateFormatTest {
         ExecutorService pool = Executors.newFixedThreadPool(10);
         Runnable task = ()-> {
             try {
-                LocalDate parse = LocalDate.parse("20200815 01:01:01", dtf);
+                LocalDateTime parse = LocalDateTime.parse("20200815 01:01:01", dtf);
                 System.out.println(parse);
             } catch (Exception e) {
                 e.printStackTrace();

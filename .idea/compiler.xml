@@ -9,13 +9,14 @@
         <outputRelativeToContentRoot value="true" />
         <module name="socket" />
         <module name="generic" />
+        <module name="common-class" />
         <module name="java8" />
         <module name="IO" />
         <module name="reflection" />
-        <module name="thread" />
+        <module name="collection" />
         <module name="proxy" />
         <module name="Collection" />
-        <module name="collection" />
+        <module name="thread" />
       </profile>
     </annotationProcessing>
   </component>

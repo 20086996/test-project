@@ -50,7 +50,7 @@ class  Number implements Runnable{
                         System.out.println(Thread.currentThread().getName()+":"+number);
                         number++;
 
-                        //释放锁
+                        //阻塞当前线程并释放锁
                         wait();
                     }
                 }
