@@ -17,6 +17,7 @@
         <module name="enum-annotation" />
         <module name="reflection" />
         <module name="proxy" />
+        <module name="netty" />
         <module name="collection" />
       </profile>
     </annotationProcessing>
