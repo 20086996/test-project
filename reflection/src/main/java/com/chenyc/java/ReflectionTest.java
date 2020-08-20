@@ -31,7 +31,7 @@ public class ReflectionTest {
         //比如：name、showNation()以及私有的构造器
     }
 
-    //反射之后，对于Person的操作
+    /**反射之后，对于Person的操作*/
     @Test
     public void test2() throws Exception{
         Class clazz = Person.class;
@@ -40,14 +40,14 @@ public class ReflectionTest {
         Object obj = cons.newInstance("Tom", 12);
         Person p = (Person) obj;
         System.out.println(p.toString());
-
+        System.out.println("*******************************");
 
         //2.通过反射，调用对象指定的属性、方法
         //调用属性
         Field age = clazz.getDeclaredField("age");
         age.set(p,10);
         System.out.println(p.toString());
-
+        System.out.println("*******************************");
 
         //调用方法
         Method show = clazz.getDeclaredMethod("show");
@@ -60,12 +60,14 @@ public class ReflectionTest {
         cons1.setAccessible(true);
         Person p1 = (Person) cons1.newInstance("Jerry");
         System.out.println(p1);
+        System.out.println("*******************************");
 
         //调用私有的属性
         Field name = clazz.getDeclaredField("name");
         name.setAccessible(true);
         name.set(p1,"HanMeimei");
         System.out.println(p1);
+        System.out.println("*******************************");
 
         //调用私有的方法
         Method showNation = clazz.getDeclaredMethod("showNation", String.class);
@@ -81,7 +83,7 @@ public class ReflectionTest {
     //疑问2：反射机制与面向对象中的封装性是不是矛盾的？如何看待两个技术？
     //不矛盾。
 
-    /*
+    /**
     关于java.lang.Class类的理解
     1.类的加载过程：
     程序经过javac.exe命令以后，会生成一个或多个字节码文件(.class结尾)。
@@ -96,21 +98,23 @@ public class ReflectionTest {
     //获取Class的实例的方式（前三种方式需要掌握）
     @Test
     public void test3() throws ClassNotFoundException {
-        //方式一：调用运行时类的属性：.class
+        /**方式一：调用运行时类的属性：.class*/
         Class clazz1 = Person.class;
         System.out.println("1-"+clazz1);
-        //方式二：通过运行时类的对象,调用getClass()
+
+        /**方式二：通过运行时类的对象,调用getClass()*/
         Person p1 = new Person();
         Class clazz2 = p1.getClass();
         System.out.println("2-"+clazz2);
-        //方式三：调用Class的静态方法：forName(String classPath)
+
+        /**方式三：调用Class的静态方法：forName(String classPath)*/
         Class clazz3 = Class.forName("com.chenyc.java.Person");
-//        clazz3 = Class.forName("java.lang.String");
+        //clazz3 = Class.forName("java.lang.String");
         System.out.println("3-"+clazz3);
         System.out.println(clazz1 == clazz2);
         System.out.println(clazz1 == clazz3);
 
-        //方式四：使用类的加载器：ClassLoader  (了解)
+        /**方式四：使用类的加载器：ClassLoader  (了解)*/
         ClassLoader classLoader = ReflectionTest.class.getClassLoader();
         Class clazz4 = classLoader.loadClass("com.chenyc.java.Person");
         System.out.println("4-"+clazz4);

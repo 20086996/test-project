@@ -17,10 +17,9 @@ public class MethodTest {
 
     @Test
     public void test1(){
-
         Class clazz = Person.class;
 
-        //getMethods():获取当前运行时类及其所有父类中声明为public权限的方法
+        /**getMethods():获取当前运行时类及其所有父类中声明为public权限的方法*/
         Method[] methods = clazz.getMethods();
         for(Method m : methods){
             System.out.println(m);
@@ -59,7 +58,7 @@ public class MethodTest {
          * */
     }
 
-    /*
+    /**
     @Xxxx
     权限修饰符  返回值类型  方法名(参数类型1 形参名1,...) throws XxxException{}
      */

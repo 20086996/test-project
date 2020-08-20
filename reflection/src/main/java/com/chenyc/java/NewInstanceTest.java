@@ -38,7 +38,7 @@ public class NewInstanceTest {
     @Test
     public void test2(){
 
-        for(int i = 0;i < 100;i++){
+        for(int i = 0;i < 2;i++){
             int num = new Random().nextInt(3);//0,1,2
             String classPath = "";
             switch(num){

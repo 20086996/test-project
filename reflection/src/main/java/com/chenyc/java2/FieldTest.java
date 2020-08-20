@@ -41,7 +41,7 @@ public class FieldTest {
          * */
     }
 
-    //权限修饰符  数据类型 变量名
+    /**权限修饰符  数据类型 变量名*/
     @Test
     public void test2(){
         Class clazz = Person.class;
