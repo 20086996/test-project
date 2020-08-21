@@ -19,6 +19,7 @@
         <module>thread</module>
         <module>common-class</module>
         <module>enum-annotation</module>
+        <module>netty</module>
     </modules>
 
     <properties>
