@@ -88,6 +88,11 @@ public class GenericTest {
         map.put("Jerry",87);
         map.put("Jack",67);
 
+        for (Map.Entry<String, Integer> stringIntegerEntry : map.entrySet()) {
+            String key = stringIntegerEntry.getKey();
+            Integer value = stringIntegerEntry.getValue();
+        }
+
 //        map.put(123,"ABC");
         //泛型的嵌套
         Set<Map.Entry<String,Integer>> entry = map.entrySet();

@@ -24,6 +24,10 @@ public class WindowTest{
 }
 
 class Window extends Thread{
+    //一共三百张票
+    //private  int ticket = 100;
+
+    //加static一共100张表
     private static int ticket = 100;
     @Override
     public void run() {

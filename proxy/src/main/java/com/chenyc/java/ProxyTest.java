@@ -45,7 +45,7 @@ class HumanUtil{
  */
 
 class ProxyFactory{
-    //调用此方法，返回一个代理类的对象。解决问题一
+    /**调用此方法，返回一个代理类的对象。解决问题一*/
     public static Object getProxyInstance(Object obj){//obj:被代理类的对象
         MyInvocationHandler handler = new MyInvocationHandler();
 
@@ -58,14 +58,17 @@ class ProxyFactory{
 
 class MyInvocationHandler implements InvocationHandler{
 
-    private Object obj;//需要使用被代理类的对象进行赋值
+    //需要使用被代理类的对象进行赋值
+    private Object obj;
 
     public void bind(Object obj){
         this.obj = obj;
     }
 
-    //当我们通过代理类的对象，调用方法a时，就会自动的调用如下的方法：invoke()
-    //将被代理类要执行的方法a的功能就声明在invoke()中
+    /**
+     当我们通过代理类的对象，调用方法a时，就会自动的调用如下的方法：invoke()
+    将被代理类要执行的方法a的功能就声明在invoke()中
+     */
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 

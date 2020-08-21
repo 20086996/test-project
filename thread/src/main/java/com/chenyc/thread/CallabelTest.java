@@ -33,7 +33,7 @@ public class CallabelTest {
             e.printStackTrace();
         }
 
-
+        System.out.println("=======================");
     }
 }
 
@@ -43,7 +43,7 @@ class  NumThread implements Callable{
 
     @Override
     public Object call() throws Exception {
-        for (int i =0;i<100;i++){
+        for (int i =0;i<10000;i++){
             if(i%2==0){
                 sum+=i;
             }

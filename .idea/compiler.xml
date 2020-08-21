@@ -8,16 +8,16 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="socket" />
-        <module name="Collection" />
         <module name="generic" />
+        <module name="proxy" />
         <module name="java8" />
         <module name="IO" />
         <module name="common-class" />
-        <module name="thread" />
+        <module name="collection" />
         <module name="enum-annotation" />
         <module name="reflection" />
-        <module name="proxy" />
-        <module name="collection" />
+        <module name="Collection" />
+        <module name="thread" />
       </profile>
     </annotationProcessing>
   </component>

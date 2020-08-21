@@ -94,7 +94,9 @@ public class StringTest1 {
         int num = Integer.parseInt(str1);
         System.out.println(num);
         String str2 = String.valueOf(num);
-        //"123"
+        //堆里
+        System.out.println(str1 == str2);
+        //"123",false
         String str3 = num + "";
         //堆里
 
