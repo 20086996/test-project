@@ -15,7 +15,12 @@ import java.util.Date;
  *    并未涉及到写入或读取文件内容的操作。如果需要读取或写入文件内容，必须使用IO流来完成。
  * 4. 后续File类的对象常会作为参数传递到流的构造器中，指明读取或写入的"终点".
  *
- *
+ * * 二、流的体系结构
+ *  * 抽象基类         节点流（或文件流）                               缓冲流（处理流的一种）
+ *  * InputStream     FileInputStream   (read(byte[] buffer))        BufferedInputStream (read(byte[] buffer))
+ *  * OutputStream    FileOutputStream  (write(byte[] buffer,0,len)  BufferedOutputStream (write(byte[] buffer,0,len) / flush()
+ *  * Reader          FileReader (read(char[] cbuf))                 BufferedReader (read(char[] cbuf) / readLine())
+ *  * Writer          FileWriter (write(char[] cbuf,0,len)           BufferedWriter (write(char[] cbuf,0,len) / flush()
  *
  *
  * @author shkstart
