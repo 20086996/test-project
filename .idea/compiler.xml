@@ -10,6 +10,7 @@
         <module name="socket" />
         <module name="Collection" />
         <module name="generic" />
+        <module name="proxy" />
         <module name="java8" />
         <module name="IO" />
         <module name="common-class" />
@@ -17,6 +18,8 @@
         <module name="enum-annotation" />
         <module name="reflection" />
         <module name="proxy" />
+        <module name="reflection" />
+        <module name="Collection" />
         <module name="netty" />
         <module name="collection" />
       </profile>
