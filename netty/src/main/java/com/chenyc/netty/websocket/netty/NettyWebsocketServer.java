@@ -1,6 +1,5 @@
-package com.chenyc.netty.websocket;
+package com.chenyc.netty.websocket.netty;
 
-import com.chenyc.netty.simple.NettyServerHandler;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;

@@ -19,7 +19,7 @@ public class NettyServerHandler extends ChannelInboundHandlerAdapter {
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         //读取从客户端发送的StudentPojo.Student
         StudentPOJO.Student student = (StudentPOJO.Student) msg;
-        System.out.println("客户端数据"+student.getId()+":"+student.getName());
+        System.out.println("客户端数据:"+student.getId()+":"+student.getName());
 
     }
 

@@ -6,6 +6,7 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.protobuf.ProtobufDecoder;
+import io.netty.handler.codec.protobuf.ProtobufVarint32FrameDecoder;
 import org.junit.Test;
 
 public class NettyServer {
@@ -51,6 +52,8 @@ public class NettyServer {
                             //可以使用一个集合管理SocketChannel，再推送消息时可以将业务加入到各个channel对应的NIOEventLoop的taskQueue或者scheduleTaskQueue中
                             ChannelPipeline pipeline = ch.pipeline();
                             //指定对哪种对象进行解码
+                            //配置Protobuf解码工具ProtobufVarint32FrameDecoder与ProtobufDecoder
+                            pipeline.addLast(new ProtobufVarint32FrameDecoder());
                             pipeline.addLast("decoder",new ProtobufDecoder(StudentPOJO.Student.getDefaultInstance()));
                             pipeline.addLast(new NettyServerHandler());
                         }

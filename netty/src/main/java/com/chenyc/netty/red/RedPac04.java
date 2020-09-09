@@ -94,7 +94,7 @@ public class RedPac04 {
 
     @Test
     public void test01(){
-        List<Integer> bonusList = createBonusList(5000, 50, 50, 4000);
+        List<Integer> bonusList = createBonusList(5000, 50, 100, 400);
         System.out.println("bonusList======"+bonusList);
         Optional<Integer> reduce = bonusList.stream().reduce(Integer::sum);
         System.out.println("reduce======"+reduce.get());

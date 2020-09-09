@@ -35,4 +35,6 @@ public class MyClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
         cause.printStackTrace();
         ctx.close();
     }
+
+
 }

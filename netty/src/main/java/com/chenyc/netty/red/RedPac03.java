@@ -37,9 +37,6 @@ public class RedPac03 {
     private static Integer randomBonusWithSpecifyBound(Integer totalBonus, Integer totalNum, Integer sendedBonus,
                                                        Integer sendedNum, Integer rdMin, Integer rdMax) {
         Integer boundMin = Math.max((totalBonus - sendedBonus - (totalNum - sendedNum - 1) * rdMax), rdMin);
-        if(boundMin==0){
-            System.out.println();
-        }
         Integer boundMax = Math.min((totalBonus - sendedBonus - (totalNum - sendedNum - 1) * rdMin), rdMax);
         return getRandomVal(boundMin, boundMax);
     }
@@ -65,7 +62,7 @@ public class RedPac03 {
 
     @Test
     public void test01(){
-        List<Integer> bonusList = createBonusList(5000, 50, 50, 400);
+        List<Integer> bonusList = createBonusList(5000, 50, 100, 400);
         System.out.println("bonusList======"+bonusList);
         Optional<Integer> reduce = bonusList.stream().reduce(Integer::sum);
         System.out.println("reduce======"+reduce.get());
