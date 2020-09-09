@@ -21,7 +21,7 @@ public class WebsocketTest {
   static CountDownLatch countDownLatch=new CountDownLatch(1);
   public static void main(String[] args) throws InterruptedException {
     OkHttpClient client = new OkHttpClient.Builder().retryOnConnectionFailure(true).build();
-    Request request = new Request.Builder().url("wss://l10n-pro.huobiasia.club/-/s/pro/ws").build();
+    Request request = new Request.Builder().url("wss://l10n-pro.huobiasia.club:443/-/s/pro/ws").build();
     client.dispatcher().cancelAll();//清理一次
     client.newWebSocket(
         request,

@@ -30,10 +30,10 @@ public class NettyWebsocketClient {
         EventLoopGroup group = null;
         try {
             group = new NioEventLoopGroup();
-            URI websocketURI = URI.create("wss://l10n-pro.huobiasia.club:443/-/s/pro/ws");//ws://localhost:8080/hello
+            URI websocketURI = URI.create("ws://hkex-config-center.hk-local.huobiapps.com:80/ws");//ws://localhost:8080/hello
             WebSocketClientHandshaker handShaker = WebSocketClientHandshakerFactory.newHandshaker(websocketURI, WebSocketVersion.V13, null, true, new DefaultHttpHeaders());
             Bootstrap boot = new Bootstrap();
-            boot.option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 3000)
+            boot.option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 10)
                     .option(ChannelOption.SO_KEEPALIVE, true)
                     .option(ChannelOption.TCP_NODELAY, true)
                     .group(group)
@@ -73,13 +73,6 @@ public class NettyWebsocketClient {
                     }
                 }
             });
-
-            //订阅数据
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put("sub", "market.ethbtc.kline.1min");
-            jsonObject.put("id", "id1");
-            channel.writeAndFlush(new TextWebSocketFrame(jsonObject.toString()));
-
             cf.channel().closeFuture().sync();
         } catch (Exception e) {
             System.out.println("连接websocket异常:"+ e);

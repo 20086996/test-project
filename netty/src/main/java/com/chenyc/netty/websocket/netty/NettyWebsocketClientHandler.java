@@ -1,5 +1,6 @@
 package com.chenyc.netty.websocket.netty;
 
+import com.alibaba.fastjson.JSONObject;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
@@ -43,12 +44,18 @@ public class NettyWebsocketClientHandler extends SimpleChannelInboundHandler<Obj
             this.handShaker.finishHandshake(ch, response);
             System.out.println("连接websocket成功, remoteAddress="+ch.remoteAddress());
 
+            //订阅数据
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("sub", "market.ethbtc.kline.1min");
+            jsonObject.put("id", "id1");
+            ctx.channel().writeAndFlush(new TextWebSocketFrame(jsonObject.toString()));
+
         } else if (obj instanceof WebSocketFrame) {
             WebSocketFrame frame = (WebSocketFrame) obj;
             //文本信息
             if (frame instanceof TextWebSocketFrame) {
                 TextWebSocketFrame textFrame = (TextWebSocketFrame) frame;
-
+                System.out.println(textFrame.text());
             }
             //二进制信息
             if (frame instanceof BinaryWebSocketFrame) {
