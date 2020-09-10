@@ -1,13 +1,11 @@
-package com.chenyc.netty.codec2;
+package com.chenyc.netty.protobuf01;
 
-import com.chenyc.netty.codec.StudentPOJO;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
-import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.util.CharsetUtil;
 
-public class NettyServerHandler extends SimpleChannelInboundHandler<MyDataInfo.MyMessage> {
+public class NettyServerHandler extends ChannelInboundHandlerAdapter {
     /**
      *读取客户端发送过来的消息
      * @param ctx 上下文对象，含有 管道pipeline，通道channel，地址
@@ -15,17 +13,11 @@ public class NettyServerHandler extends SimpleChannelInboundHandler<MyDataInfo.M
      * @throws Exception
      */
     @Override
-    protected void channelRead0(ChannelHandlerContext channelHandlerContext, MyDataInfo.MyMessage myMessage) throws Exception {
-        //根据dataType显示不同信息
-        MyDataInfo.MyMessage.DateType dateType = myMessage.getDateType();
-        if(dateType==MyDataInfo.MyMessage.DateType.StudentType){
-            MyDataInfo.Student student = myMessage.getStudent();
-            System.out.println("学生id："+student.getId()+":"+student.getName());
-        }
-        else if(dateType==MyDataInfo.MyMessage.DateType.WorkerType){
-            MyDataInfo.Worker worker = myMessage.getWorker();
-            System.out.println("工人年龄："+worker.getAge()+":"+worker.getName());
-        }
+    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+        //读取从客户端发送的StudentPojo.Student
+        StudentPOJO.Student student = (StudentPOJO.Student) msg;
+        System.out.println("客户端数据:"+student.getId()+":"+student.getName());
+
     }
 
     //数据读取完毕

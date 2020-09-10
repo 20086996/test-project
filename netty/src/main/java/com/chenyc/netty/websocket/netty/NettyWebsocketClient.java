@@ -30,10 +30,24 @@ public class NettyWebsocketClient {
         EventLoopGroup group = null;
         try {
             group = new NioEventLoopGroup();
-            URI websocketURI = URI.create("ws://hkex-config-center.hk-local.huobiapps.com:80/ws");//ws://localhost:8080/hello
+            URI websocketURI = URI.create("wss://l10n-pro.huobiasia.club/-/s/pro/ws");//ws://localhost:8080/hello
+            String scheme = websocketURI.getScheme() == null ? "ws" : websocketURI.getScheme();
+            final String host = websocketURI.getHost() == null ? "127.0.0.1" : websocketURI.getHost();
+            final int port;
+            if (websocketURI.getPort() == -1) {
+                if ("ws".equalsIgnoreCase(scheme)) {
+                    port = 80;
+                } else if ("wss".equalsIgnoreCase(scheme)) {
+                    port = 443;
+                } else {
+                    port = -1;
+                }
+            } else {
+                port = websocketURI.getPort();
+            }
             WebSocketClientHandshaker handShaker = WebSocketClientHandshakerFactory.newHandshaker(websocketURI, WebSocketVersion.V13, null, true, new DefaultHttpHeaders());
             Bootstrap boot = new Bootstrap();
-            boot.option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 10)
+            boot.option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 100)
                     .option(ChannelOption.SO_KEEPALIVE, true)
                     .option(ChannelOption.TCP_NODELAY, true)
                     .group(group)
@@ -50,7 +64,7 @@ public class NettyWebsocketClient {
                         }
                     });
 
-            ChannelFuture cf = boot.connect(websocketURI.getHost(), websocketURI.getPort()).sync();
+            ChannelFuture cf = boot.connect(websocketURI.getHost(), port).sync();
             cf.addListener(new ChannelFutureListener() {
                 @Override
                 public void operationComplete(ChannelFuture channelFuture) throws Exception {

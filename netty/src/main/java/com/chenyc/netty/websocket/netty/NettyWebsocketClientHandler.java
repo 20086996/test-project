@@ -7,6 +7,7 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.http.FullHttpResponse;
 import io.netty.handler.codec.http.websocketx.*;
+import io.netty.handler.timeout.IdleStateEvent;
 
 import java.time.LocalDateTime;
 
@@ -15,7 +16,7 @@ import java.time.LocalDateTime;
  * @create 2020-09-09 10:38
  */
 public class NettyWebsocketClientHandler extends SimpleChannelInboundHandler<Object> {
-    private final WebSocketClientHandshaker handShaker;
+    private  WebSocketClientHandshaker handShaker;
     @Override
     public void channelInactive(ChannelHandlerContext ctx) {
         System.out.println("websocket连接断开");
@@ -87,5 +88,24 @@ public class NettyWebsocketClientHandler extends SimpleChannelInboundHandler<Obj
         System.out.println("handlerRemoved被调用"+ctx.channel().id().asLongText());
     }
 
-
+    @Override
+    public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
+        if(evt instanceof IdleStateEvent){
+            //将evt向下转型为IdleStateEvent
+            IdleStateEvent event = (IdleStateEvent) evt;
+            String eventType=null;
+            switch (event.state()){
+                case READER_IDLE:
+                    eventType="du kong xian ";
+                    break;
+                case WRITER_IDLE:
+                    eventType="xie kong xian ";
+                    break;
+                case ALL_IDLE:
+                    eventType="duxie kong xian ";
+                    break;
+            }
+            System.out.println(ctx.channel().remoteAddress()+"==超时=="+eventType);
+        }
+    }
 }

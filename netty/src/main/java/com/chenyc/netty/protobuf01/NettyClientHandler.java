@@ -1,12 +1,9 @@
-package com.chenyc.netty.codec2;
+package com.chenyc.netty.protobuf01;
 
-import com.chenyc.netty.codec.StudentPOJO;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.util.CharsetUtil;
-
-import java.util.Random;
 
 public class NettyClientHandler extends ChannelInboundHandlerAdapter {
     /**
@@ -16,19 +13,10 @@ public class NettyClientHandler extends ChannelInboundHandlerAdapter {
      */
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        int random = new Random().nextInt(3);
-        MyDataInfo.MyMessage myMessage = null;
-        if(random==0){
-            myMessage = MyDataInfo.MyMessage.newBuilder().setDateType(MyDataInfo.MyMessage.DateType.StudentType)
-                    .setStudent(MyDataInfo.Student.newBuilder().setId(1).setName("玉麒麟").build()).build();
-
-        }else {
-            myMessage = MyDataInfo.MyMessage.newBuilder().setDateType(MyDataInfo.MyMessage.DateType.WorkerType)
-                    .setWorker(MyDataInfo.Worker.newBuilder().setAge(1).setName("小红").build()).build();
+        for (int i = 0; i <20 ; i++) {
+            StudentPOJO.Student student = StudentPOJO.Student.newBuilder().setId(i).setName("小明").build();
+            ctx.writeAndFlush(student);
         }
-
-        ctx.writeAndFlush(myMessage);
-
     }
 
     /**
