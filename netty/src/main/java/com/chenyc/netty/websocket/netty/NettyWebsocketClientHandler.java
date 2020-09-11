@@ -1,6 +1,7 @@
 package com.chenyc.netty.websocket.netty;
 
 import com.alibaba.fastjson.JSONObject;
+import com.chenyc.netty.custom_protocol.custom.server.LoginAuthRespHandler;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
@@ -8,14 +9,22 @@ import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.http.FullHttpResponse;
 import io.netty.handler.codec.http.websocketx.*;
 import io.netty.handler.timeout.IdleStateEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.InputStreamReader;
 import java.time.LocalDateTime;
+import java.util.zip.GZIPInputStream;
 
 /**
  * @author chenyc
  * @create 2020-09-09 10:38
  */
 public class NettyWebsocketClientHandler extends SimpleChannelInboundHandler<Object> {
+    private static final Logger LOGGER = LoggerFactory.getLogger(NettyWebsocketClientHandler.class);
+
     private  WebSocketClientHandshaker handShaker;
     @Override
     public void channelInactive(ChannelHandlerContext ctx) {
@@ -62,8 +71,27 @@ public class NettyWebsocketClientHandler extends SimpleChannelInboundHandler<Obj
             if (frame instanceof BinaryWebSocketFrame) {
                 BinaryWebSocketFrame binFrame = (BinaryWebSocketFrame)frame;
                 ByteBuf content = binFrame.content();
+                byte[] bytes = new byte[content.readableBytes()];
+                content.readBytes(bytes);
 
-                System.out.println("BinaryWebSocketFrame");
+                GZIPInputStream gzipInputStream = new GZIPInputStream(new ByteArrayInputStream(bytes));
+                InputStreamReader inputStreamReader = new InputStreamReader(gzipInputStream, "UTF-8");
+                BufferedReader in2 = new BufferedReader(inputStreamReader);
+                StringBuilder builder = new StringBuilder();
+                String s;
+                while ((s = in2.readLine()) != null) {
+                    builder.append(s);
+                }
+                LOGGER.info("数据：{}",builder.toString());
+
+                JSONObject jsonObject = JSONObject.parseObject(builder.toString());
+                Long ping = jsonObject.getLong("ping");
+                if (ping!=null) {
+                    JSONObject resp = new JSONObject();
+                    resp.put("pong", ping);
+                    LOGGER.info("{}",resp.toString());
+                    ctx.channel().writeAndFlush(new TextWebSocketFrame(resp.toString()));
+                }
             }
             //ping信息
             if (frame instanceof PongWebSocketFrame) {
