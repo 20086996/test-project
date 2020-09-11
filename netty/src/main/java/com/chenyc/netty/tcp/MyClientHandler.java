@@ -14,7 +14,7 @@ public class MyClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         //使用客户端发送10条数据 hello,server 编号
         for(int i= 0; i< 10; ++i) {
-            ByteBuf buffer = Unpooled.copiedBuffer("hello,server " + i, Charset.forName("utf-8"));
+            ByteBuf buffer = Unpooled.copiedBuffer("hello,server " + i+"$_", Charset.forName("utf-8"));
             ctx.writeAndFlush(buffer);
         }
     }
