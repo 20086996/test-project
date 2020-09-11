@@ -25,7 +25,7 @@ public class NettyHeartServerHandler extends ChannelInboundHandlerAdapter {
             }
             System.out.println(ctx.channel().remoteAddress()+"==超时=="+eventType);
 
-            ctx.channel().close();
+//            ctx.channel().close();
         }
 
 

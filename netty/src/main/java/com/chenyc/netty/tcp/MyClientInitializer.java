@@ -6,6 +6,7 @@ import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.handler.codec.DelimiterBasedFrameDecoder;
+import io.netty.handler.timeout.ReadTimeoutHandler;
 
 
 public class MyClientInitializer extends ChannelInitializer<SocketChannel> {
@@ -19,6 +20,7 @@ public class MyClientInitializer extends ChannelInitializer<SocketChannel> {
 
         //2、定长截取信息拆包
 //        pipeline.addLast(new FixedLengthFrameDecoder(5));
+        pipeline.addLast(new ReadTimeoutHandler(5));
         pipeline.addLast(new MyClientHandler());
     }
 }

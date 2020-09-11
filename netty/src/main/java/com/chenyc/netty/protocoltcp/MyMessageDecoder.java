@@ -2,14 +2,16 @@ package com.chenyc.netty.protocoltcp;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
+import io.netty.handler.codec.ByteToMessageDecoder;
 import io.netty.handler.codec.ReplayingDecoder;
 
 import java.util.List;
 
 public class MyMessageDecoder extends ReplayingDecoder<Void> {
+//public class MyMessageDecoder extends ByteToMessageDecoder {
     @Override
     protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws Exception {
-        System.out.println("MyMessageDecoder decode 被调用");
+//        System.out.println("MyMessageDecoder decode 被调用");
         //需要将得到二进制字节码-> MessageProtocol 数据包(对象)
         int length = in.readInt();
 

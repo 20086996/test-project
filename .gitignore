@@ -222,3 +222,7 @@ $RECYCLE.BIN/
 
 src/main/resources/statics/
 src/main/resources/templates/
+
+mvnw
+*.cmd
+.mvn/
