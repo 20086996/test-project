@@ -41,8 +41,7 @@ public class NettyMessageEncoder  extends MessageToByteEncoder<NettyMessage> {
 		byte[] keyArray = null;
 		Object value = null;
 		//然后对key进行编码，先编码长度，然后再将它转化为byte数组之后编码内容
-		for (Map.Entry<String, Object> param : header.getAttachment()
-			.entrySet()) {
+		for (Map.Entry<String, Object> param : header.getAttachment().entrySet()) {
 		    key = param.getKey();
 		    keyArray = key.getBytes("UTF-8");
 		    sendBuf.writeInt(keyArray.length);//key的字符编码长度
