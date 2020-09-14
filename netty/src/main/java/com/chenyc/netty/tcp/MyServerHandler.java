@@ -30,8 +30,12 @@ public class MyServerHandler extends SimpleChannelInboundHandler<ByteBuf>{
         System.out.println("服务器接收到消息量=" + (++this.count));
 
         //服务器回送数据给客户端, 回送一个随机id ,
-        ByteBuf responseByteBuf = Unpooled.copiedBuffer(UUID.randomUUID().toString() + " ", Charset.forName("utf-8"));
-        ctx.writeAndFlush(responseByteBuf);
+        ctx.writeAndFlush(Unpooled.copiedBuffer(UUID.randomUUID().toString() + "$_", Charset.forName("utf-8")));
+        ctx.writeAndFlush(Unpooled.copiedBuffer(UUID.randomUUID().toString() + "$_", Charset.forName("utf-8")));
+        ctx.writeAndFlush(Unpooled.copiedBuffer(UUID.randomUUID().toString() + "$_", Charset.forName("utf-8")));
+        ctx.writeAndFlush(Unpooled.copiedBuffer(UUID.randomUUID().toString() + "$_", Charset.forName("utf-8")));
+        ctx.writeAndFlush(Unpooled.copiedBuffer(UUID.randomUUID().toString() + "$_", Charset.forName("utf-8")));
+        ctx.writeAndFlush(Unpooled.copiedBuffer(UUID.randomUUID().toString() + "$_", Charset.forName("utf-8")));
 
     }
 }
