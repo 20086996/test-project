@@ -1,5 +1,6 @@
 package com.chenyc.java;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
@@ -14,6 +15,8 @@ interface Human{
     String getBelief();
 
     void eat(String food);
+
+    void getPeople(People people);
 }
 //被代理类
 class SuperMan implements Human{
@@ -26,6 +29,11 @@ class SuperMan implements Human{
     @Override
     public void eat(String food) {
         System.out.println("我喜欢吃" + food);
+    }
+
+    @Override
+    public void getPeople(People people) {
+        System.out.println(people.name+"====="+people.value);
     }
 }
 
@@ -77,6 +85,23 @@ class MyInvocationHandler implements InvocationHandler{
 
         //method:即为代理类对象调用的方法，此方法也就作为了被代理类对象要调用的方法
         //obj:被代理类的对象
+        if(args!=null){
+            Object arg = args[0];
+            System.out.println(arg);
+        }
+
+        if (method.getParameterTypes().length > 0){
+            Object para = args[0];
+            Class<?> parameterType = method.getParameterTypes()[0];
+            for (Field field : parameterType.getDeclaredFields()) {
+                field.setAccessible(true);
+                String name = field.getName();
+                Object o = field.get(para);
+                System.out.println(o);
+            }
+        }
+
+
         Object returnValue = method.invoke(obj,args);
 
         util.method2();
@@ -87,6 +112,11 @@ class MyInvocationHandler implements InvocationHandler{
     }
 }
 
+class People{
+    public String name;
+    public String value;
+}
+
 public class ProxyTest {
 
     public static void main(String[] args) {
@@ -94,8 +124,12 @@ public class ProxyTest {
         //proxyInstance:代理类的对象
         Human proxyInstance = (Human) ProxyFactory.getProxyInstance(superMan);
         //当通过代理类对象调用方法时，会自动的调用被代理类中同名的方法
-        proxyInstance.getBelief();
-        proxyInstance.eat("四川麻辣烫");
+//        proxyInstance.getBelief();
+//        proxyInstance.eat("四川麻辣烫");
+        People people = new People();
+        people.name="姓名";
+        people.value="小名";
+        proxyInstance.getPeople(people);
 
         System.out.println("*****************************");
 
