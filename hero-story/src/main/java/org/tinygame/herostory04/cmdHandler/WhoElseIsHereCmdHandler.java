@@ -1,9 +1,9 @@
-package org.tinygame.herostory01.cmdHandler;
+package org.tinygame.herostory04.cmdHandler;
 
 import io.netty.channel.ChannelHandlerContext;
-import org.tinygame.herostory01.model.User;
-import org.tinygame.herostory01.model.UserManager;
-import org.tinygame.herostory01.msg.GameMsgProtocol;
+import org.tinygame.herostory04.model.User;
+import org.tinygame.herostory04.model.UserManager;
+import org.tinygame.herostory04.msg.GameMsgProtocol;
 
 /**
  * 谁在场指令处理器

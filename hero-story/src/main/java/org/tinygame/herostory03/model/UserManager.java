@@ -1,4 +1,4 @@
-package org.tinygame.herostory01.model;
+package org.tinygame.herostory03.model;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -22,7 +22,7 @@ public final class UserManager {
     /**
      * 添加用户
      *
-     * @param newUser 新用户
+     * @param newUser
      */
     static public void addUser(User newUser) {
         if (null != newUser) {
@@ -33,7 +33,7 @@ public final class UserManager {
     /**
      * 根据用户 Id 移除用户
      *
-     * @param userId 用户 Id
+     * @param userId
      */
     static public void removeUserById(int userId) {
         _userMap.remove(userId);
@@ -42,7 +42,7 @@ public final class UserManager {
     /**
      * 列表用户
      *
-     * @return 用户列表
+     * @return
      */
     static public Collection<User> listUser() {
         return _userMap.values();

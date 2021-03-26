@@ -1,4 +1,4 @@
-package org.tinygame.herostory01;
+package org.tinygame.herostory03;
 
 import io.netty.channel.Channel;
 import io.netty.channel.group.ChannelGroup;
@@ -23,29 +23,25 @@ public final class Broadcaster {
     /**
      * 添加信道
      *
-     * @param newChannel 客户端信道
+     * @param channel
      */
-    static public void addChannel(Channel newChannel) {
-        if (null != newChannel) {
-            _channelGroup.add(newChannel);
-        }
+    static public void addChannel(Channel channel) {
+        _channelGroup.add(channel);
     }
 
     /**
      * 移除信道
      *
-     * @param targetChannel 客户端信道
+     * @param channel
      */
-    static public void removeChannel(Channel targetChannel) {
-        if (null != targetChannel) {
-            _channelGroup.remove(targetChannel);
-        }
+    static public void removeChannel(Channel channel) {
+        _channelGroup.remove(channel);
     }
 
     /**
      * 关播消息
      *
-     * @param msg 消息对象
+     * @param msg
      */
     static public void broadcast(Object msg) {
         if (null == msg) {

@@ -1,9 +1,9 @@
-package org.tinygame.herostory01.cmdHandler;
+package org.tinygame.herostory04.cmdHandler;
 
 import com.google.protobuf.GeneratedMessageV3;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.tinygame.herostory01.util.PackageUtil;
+import org.tinygame.herostory04.util.PackageUtil;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;

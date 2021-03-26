@@ -1,4 +1,4 @@
-package org.tinygame.herostory01.util;
+package org.tinygame.herostory04.util;
 
 import java.io.File;
 import java.io.FileInputStream;

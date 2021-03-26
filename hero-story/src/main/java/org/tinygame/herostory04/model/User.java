@@ -1,4 +1,4 @@
-package org.tinygame.herostory01.model;
+package org.tinygame.herostory04.model;
 
 /**
  * 用户
