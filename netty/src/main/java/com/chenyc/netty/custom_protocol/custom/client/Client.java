@@ -3,6 +3,7 @@ package com.chenyc.netty.custom_protocol.custom.client;
 import com.chenyc.netty.custom_protocol.NettyConstant;
 import com.chenyc.netty.custom_protocol.custom.codec.NettyMessageDecoder;
 import com.chenyc.netty.custom_protocol.custom.codec.NettyMessageEncoder;
+import com.sun.org.apache.bcel.internal.classfile.Code;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -12,6 +13,8 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.timeout.ReadTimeoutHandler;
+
+import javax.annotation.PostConstruct;
 import java.net.InetSocketAddress;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -20,14 +23,14 @@ import java.util.concurrent.TimeUnit;
 public class Client {
 
 	public static void main(String[] args) throws Exception {
-		new Client().connect(NettyConstant.PORT, NettyConstant.REMOTEIP);
+		new Client().connect();
 	}
 
 	private ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
 	//创建工作线程组
 	EventLoopGroup group = new NioEventLoopGroup();
 
-	public void connect(int port, String host) throws Exception {
+	public void connect() {
 		// 配置客户端NIO线程组
 		try {
 			Bootstrap b = new Bootstrap();
@@ -43,7 +46,7 @@ public class Client {
 						}
 					});
 			// 发起异步连接操作
-			ChannelFuture future = b.connect(new InetSocketAddress(host, port),
+			ChannelFuture future = b.connect(new InetSocketAddress(NettyConstant.REMOTEIP, NettyConstant.PORT),
 					new InetSocketAddress(NettyConstant.LOCALIP, NettyConstant.LOCAL_PORT)).sync();
 			
 			//手动发测试数据，验证是否会产生TCP粘包/拆包情况
@@ -59,26 +62,22 @@ public class Client {
 //				message.setBody("我是请求数据" + i);
 //				c.writeAndFlush(message);
 //			}
-			
+
 			future.channel().closeFuture().sync();
-		} finally {
-			// 所有资源释放完成之后，清空资源，再次发起重连操作
-			executor.execute(new Runnable() {
-				@Override
-				public void run() {
-					try {
-						TimeUnit.SECONDS.sleep(1);
-						try {
-							connect(NettyConstant.PORT, NettyConstant.REMOTEIP);// 发起重连操作
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-				}
-			});
+		} catch (Exception e){
+			reconnect();
 		}
+	}
+
+	private void reconnect() {
+//		if (!isDestroy) {
+//			if (isInit && maxInitRetryAttempts <= 0) {
+//				consumer.accept(R.fail(Code.SYSTEM_ERROR, String.format("连接websocket失败，已尝试%s次，请检查配置或确认服务端已启动！",
+//						foundation.getMaxRetryAttemptsLimit())));
+//			} else {
+				group.schedule(this::connect, 5L, TimeUnit.SECONDS);
+//			}
+//		}
 	}
 
 }

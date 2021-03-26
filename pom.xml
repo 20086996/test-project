@@ -20,6 +20,8 @@
         <module>common-class</module>
         <module>enum-annotation</module>
         <module>netty</module>
+        <module>jvm</module>
+        <module>hero-story</module>
     </modules>
 
     <properties>

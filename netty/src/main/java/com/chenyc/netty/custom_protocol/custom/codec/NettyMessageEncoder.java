@@ -7,6 +7,7 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToByteEncoder;
 
 import java.io.IOException;
+import java.nio.ByteBuffer;
 import java.util.Map;
 
 public class NettyMessageEncoder  extends MessageToByteEncoder<NettyMessage> {
@@ -75,6 +76,19 @@ public class NettyMessageEncoder  extends MessageToByteEncoder<NettyMessage> {
 		
 		
 		
+	}
+
+	public static void main(String[] args) {
+		//0101 0010       0010 0100     0101 1011    0100 1101
+		byte[] bytes = {49,50,51,52};
+		int int1 = ByteBuffer.wrap(bytes).getInt();
+		System.out.println(int1);
+
+		Integer a = 1234;
+		byte[] bytes1 = a.toString().getBytes();
+		for (byte b : bytes1) {
+			System.out.println(b);
+		}
 	}
 
 }
