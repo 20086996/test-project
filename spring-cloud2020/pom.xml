@@ -11,6 +11,8 @@
 
   <modules>
     <module>cloud-provider-payment</module>
+    <module>cloud-consumer-order</module>
+    <module>cloud-api-commons</module>
   </modules>
 
   <!-- 统一管理 jar 包版本 -->
