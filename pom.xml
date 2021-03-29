@@ -22,6 +22,7 @@
         <module>netty</module>
         <module>jvm</module>
         <module>hero-story</module>
+        <module>spring-cloud2020</module>
     </modules>
 
     <properties>
