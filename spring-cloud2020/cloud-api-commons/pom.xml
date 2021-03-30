@@ -12,4 +12,19 @@
     <artifactId>cloud-api-commons</artifactId>
 
 
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+<!--            当别人通过pom依赖Project A的时候，D不会被传递依赖进来-->
+<!--            <optional>true</optional>-->
+        </dependency>
+
+        <!-- 这个是新添加的，之前没用到，后面会用到。关于这个hutool 是个功能强大的工具包，官网：https://hutool.cn/ -->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.1.0</version>
+        </dependency>
+    </dependencies>
 </project>
