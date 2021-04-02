@@ -23,6 +23,7 @@
         <module>jvm</module>
         <module>hero-story</module>
         <module>spring-cloud2020</module>
+        <module>springboot-demo</module>
     </modules>
 
     <properties>
