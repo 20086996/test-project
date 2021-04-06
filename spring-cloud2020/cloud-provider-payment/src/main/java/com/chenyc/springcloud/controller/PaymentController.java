@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @Slf4j
@@ -65,5 +66,24 @@ public class PaymentController{
 
         return this.discoveryClient;
     }
+
+
+    @RequestMapping(value = "/payment/zk")
+    public String paymentzk()
+    {
+        return "springcloud with zookeeper: "+serverPort+"\t"+ UUID.randomUUID().toString();
+    }
+
+    @RequestMapping(value = "/payment/consul")
+    public String paymentConsul()
+    {
+        return "springcloud with consul: "+serverPort+"\t   "+ UUID.randomUUID().toString();
+    }
+
+    @GetMapping(value = "/payment/lb")
+    public String getPaymentLB() {
+        return serverPort;//返回服务接口
+    }
+
 
 }

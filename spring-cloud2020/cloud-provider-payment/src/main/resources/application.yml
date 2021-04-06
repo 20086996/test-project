@@ -1,8 +1,9 @@
 spring:
   profiles:
-    active: payment8002
+    active: payment8001
 
 ---
+# 8001和8002测试用eureka作为注册中心
 server:
   port: 8001
 
@@ -84,3 +85,55 @@ mybatis:
   type-aliases-package: com.chenyc.springcloud.entities    # 所有Entity别名类所在包
 
 
+---
+# 8003测试用zookeeper作为注册中心
+server:
+  port: 8003
+
+spring:
+  profiles: payment8003
+  application:
+    name: cloud-provider-payment
+  cloud:
+    zookeeper:
+      connect-string: 172.18.8.112:2181
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource            # 当前数据源操作类型
+    driver-class-name: org.gjt.mm.mysql.Driver              # mysql驱动包
+    url: jdbc:mysql://172.18.8.117:3306/new_assets_db?useAffectedRows=true&allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=CTT&zeroDateTimeBehavior=convertToNull
+    username: root
+    password: 7cz.jXR3mycw
+
+
+
+
+mybatis:
+  mapperLocations: classpath:mapper/*.xml
+  type-aliases-package: com.chenyc.springcloud.entities    # 所有Entity别名类所在包
+
+---
+# 8004测试用consul作为注册中心
+server:
+  port: 8004
+
+spring:
+  profiles: payment8004
+  application:
+    name: cloud-provider-payment
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource            # 当前数据源操作类型
+    driver-class-name: org.gjt.mm.mysql.Driver              # mysql驱动包
+    url: jdbc:mysql://172.18.8.117:3306/new_assets_db?useAffectedRows=true&allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=CTT&zeroDateTimeBehavior=convertToNull
+    username: root
+    password: 7cz.jXR3mycw
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        service-name: ${spring.application.name}
+
+
+mybatis:
+  mapperLocations: classpath:mapper/*.xml
+  type-aliases-package: com.chenyc.springcloud.entities    # 所有Entity别名类所在包
