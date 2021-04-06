@@ -8,4 +8,10 @@ public interface PaymentService
     public int create(Payment payment);
 
     public Payment getPaymentById(@Param("id") Long id);
+
+    public String paymentInfo_OK(Integer id);
+
+    public String paymentInfo_TimeOut(Integer id);
+
+
 }

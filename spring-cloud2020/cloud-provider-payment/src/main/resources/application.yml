@@ -27,8 +27,8 @@ eureka:
     # Eureka Server每8秒拉取服务地址清单后缓存到本地
     registry-fetch-interval-seconds: 8
     service-url:
-      #      defaultZone: http://localhost:7001/eureka
-      defaultZone: http://eureka7001.com:7001/eureka, http://eureka7002.com:7002/eureka
+      defaultZone: http://localhost:7001/eureka
+#      defaultZone: http://eureka7001.com:7001/eureka, http://eureka7002.com:7002/eureka
   instance:
     instance-id: payment8001 #添加此处
     prefer-ip-address: true #添加此处
@@ -43,7 +43,10 @@ mybatis:
   mapperLocations: classpath:mapper/*.xml
   type-aliases-package: com.chenyc.springcloud.entities    # 所有Entity别名类所在包
 
-
+#开启
+feign:
+  hystrix:
+    enabled: true
 ---
 server:
   port: 8002
@@ -68,8 +71,8 @@ eureka:
     # Eureka Server每8秒拉取服务地址清单后缓存到本地
     registry-fetch-interval-seconds: 8
     service-url:
-#      defaultZone: http://localhost:7001/eureka
-      defaultZone: http://eureka7001.com:7001/eureka, http://eureka7002.com:7002/eureka
+      defaultZone: http://localhost:7001/eureka
+#      defaultZone: http://eureka7001.com:7001/eureka, http://eureka7002.com:7002/eureka
   instance:
     instance-id: payment8002 #添加此处
     prefer-ip-address: true #添加此处
@@ -84,7 +87,10 @@ mybatis:
   mapperLocations: classpath:mapper/*.xml
   type-aliases-package: com.chenyc.springcloud.entities    # 所有Entity别名类所在包
 
-
+#开启
+feign:
+  hystrix:
+    enabled: true
 ---
 # 8003测试用zookeeper作为注册中心
 server:
@@ -103,8 +109,6 @@ spring:
     url: jdbc:mysql://172.18.8.117:3306/new_assets_db?useAffectedRows=true&allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=CTT&zeroDateTimeBehavior=convertToNull
     username: root
     password: 7cz.jXR3mycw
-
-
 
 
 mybatis:

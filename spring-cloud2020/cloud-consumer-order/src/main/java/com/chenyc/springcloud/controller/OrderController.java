@@ -4,6 +4,8 @@ import com.chenyc.springcloud.entities.CommonResult;
 import com.chenyc.springcloud.entities.Payment;
 import com.chenyc.springcloud.lb.LoadBalancer;
 import com.chenyc.springcloud.openFeign.PaymentFeignService;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
@@ -80,7 +82,7 @@ public class OrderController {
         }
     }
 
-
+    /**********************************************自定义轮询*************************************************************************/
     @GetMapping(value = "/payment/lb")
     public String getPaymentLB()
     {
@@ -93,7 +95,7 @@ public class OrderController {
         return restTemplate.getForObject(uri+"/payment/lb",String.class);
     }
 
-
+/**********************************************openFeign*************************************************************************/
     @GetMapping(value = "/payment/openFeign/get/{id}")
     public CommonResult<Payment> openFeign(@PathVariable("id") Long id)
     {
@@ -101,5 +103,27 @@ public class OrderController {
     }
 
 
+/**********************************************hystrix*************************************************************************/
+    @GetMapping("/payment/hystrix/ok/{id}")
+    public String paymentInfo_OK(@PathVariable("id") Integer id)
+    {
+        String result = paymentFeignService.paymentInfo_OK(id);
+        return result;
+    }
+
+    @GetMapping("/payment/hystrix/timeout/{id}")
+    @HystrixCommand(fallbackMethod = "paymentTimeOutFallbackMethod",commandProperties = {
+            @HystrixProperty(name="execution.isolation.thread.timeoutInMilliseconds",value="1500")
+    })
+    public String paymentInfo_TimeOut(@PathVariable("id") Integer id) {
+//        int age = 10/0;
+        String result = paymentFeignService.paymentInfo_TimeOut(id);
+        return result;
+    }
+
+    //善后方法
+    public String paymentTimeOutFallbackMethod(@PathVariable("id") Integer id){
+        return "我是消费者80,对方支付系统繁忙请10秒钟后再试或者自己运行出错请检查自己,o(╥﹏╥)o";
+    }
 
 }

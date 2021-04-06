@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: eureka7002
+    active: eureka7001
 
 ---
 server:
@@ -19,9 +19,9 @@ eureka:
     fetch-registry: false
     service-url:
       # 单机版本
-      # defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+     defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
       # 集群版本，机器配置不行，只启动2台eureka，组成集群
-      defaultZone: http://eureka7002.com:7002/eureka/
+      # defaultZone: http://eureka7002.com:7002/eureka/
   server:
     enable-self-preservation: false # 设为false，关闭自我保护
     #清理间隔（单位毫秒，默认是0，不清理）启用主动失效，并且每次主动失效检测间隔为3s
@@ -44,9 +44,9 @@ eureka:
     fetch-registry: false
     service-url:
       # 单机版本
-      # defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
       # 集群版本，机器配置不行，只启动2台eureka，组成集群
-      defaultZone: http://eureka7001.com:7001/eureka/
+      # defaultZone: http://eureka7002.com:7002/eureka/
   server:
     enable-self-preservation: false # 设为false，关闭自我保护
     #清理间隔（单位毫秒，默认是0，不清理）启用主动失效，并且每次主动失效检测间隔为3s

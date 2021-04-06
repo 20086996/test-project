@@ -67,22 +67,41 @@ public class PaymentController{
         return this.discoveryClient;
     }
 
-
+/*********************************************zk注册中心测试*************************************************************************/
     @RequestMapping(value = "/payment/zk")
     public String paymentzk()
     {
         return "springcloud with zookeeper: "+serverPort+"\t"+ UUID.randomUUID().toString();
     }
 
+/*********************************************consul注册中心测试*************************************************************************/
     @RequestMapping(value = "/payment/consul")
     public String paymentConsul()
     {
         return "springcloud with consul: "+serverPort+"\t   "+ UUID.randomUUID().toString();
     }
 
+/*********************************************自定义负载均衡测试*************************************************************************/
     @GetMapping(value = "/payment/lb")
     public String getPaymentLB() {
         return serverPort;//返回服务接口
+    }
+/*********************************************hystrix测试*************************************************************************/
+
+    @GetMapping("/payment/hystrix/ok/{id}")
+    public String paymentInfo_OK(@PathVariable("id") Integer id)
+    {
+        String result = paymentService.paymentInfo_OK(id);
+        log.info("*****result: "+result);
+        return result;
+    }
+
+    @GetMapping("/payment/hystrix/timeout/{id}")
+    public String paymentInfo_TimeOut(@PathVariable("id") Integer id)
+    {
+        String result = paymentService.paymentInfo_TimeOut(id);
+        log.info("*****result: "+result);
+        return result;
     }
 
 
