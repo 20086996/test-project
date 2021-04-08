@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -16,6 +17,7 @@ import java.util.UUID;
 
 @RestController
 @Slf4j
+@RefreshScope
 public class PaymentController{
     @Resource
     private PaymentService paymentService;
@@ -23,6 +25,8 @@ public class PaymentController{
     private String serverPort;//添加serverPort
     @Autowired
     DiscoveryClient discoveryClient;
+    @Value("${config.info}")
+    private String configInfo;
 
     @PostMapping(value = "/payment/create")
     public CommonResult create(@RequestBody  Payment payment)
@@ -102,6 +106,23 @@ public class PaymentController{
         String result = paymentService.paymentInfo_TimeOut(id);
         log.info("*****result: "+result);
         return result;
+    }
+
+    //====服务熔断
+    @GetMapping("/payment/circuit/{id}")
+    public String paymentCircuitBreaker(@PathVariable("id") Integer id)
+    {
+        String result = paymentService.paymentCircuitBreaker(id);
+        log.info("****result: "+result);
+        return result;
+    }
+
+
+/*********************************************config文件中心测试*************************************************************************/
+    @GetMapping("/configInfo")
+    public String getConfigInfo()
+    {
+        return configInfo;
     }
 
 

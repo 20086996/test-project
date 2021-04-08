@@ -4,6 +4,7 @@ import com.chenyc.springcloud.entities.CommonResult;
 import com.chenyc.springcloud.entities.Payment;
 import com.chenyc.springcloud.lb.LoadBalancer;
 import com.chenyc.springcloud.openFeign.PaymentFeignService;
+import com.netflix.hystrix.contrib.javanica.annotation.DefaultProperties;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/consumer")
+@DefaultProperties(defaultFallback = "payment_Global_FallbackMethod")
 public class OrderController {
 
     //远程调用的 地址
@@ -121,9 +123,29 @@ public class OrderController {
         return result;
     }
 
+    @GetMapping("/payment/hystrix/global/timeout/{id}")
+    @HystrixCommand//用全局的fallback方法
+    public String paymentInfoGlobalTimeOut(@PathVariable("id") Integer id) {
+        int age = 10/0;
+        String result = paymentFeignService.paymentInfo_TimeOut(id);
+        return result;
+    }
+
+    @GetMapping("/payment/hystrix/currency/timeout/{id}")
+    public String paymentInfoCurrencyTimeOut(@PathVariable("id") Integer id) {
+        String result = paymentFeignService.paymentInfo_TimeOut(id);
+        return result;
+    }
+
     //善后方法
     public String paymentTimeOutFallbackMethod(@PathVariable("id") Integer id){
         return "我是消费者80,对方支付系统繁忙请10秒钟后再试或者自己运行出错请检查自己,o(╥﹏╥)o";
+    }
+
+    // 下面是全局fallback方法
+    public String payment_Global_FallbackMethod()
+    {
+        return "Global异常处理信息，请稍后再试，/(ㄒoㄒ)/~~";
     }
 
 }
