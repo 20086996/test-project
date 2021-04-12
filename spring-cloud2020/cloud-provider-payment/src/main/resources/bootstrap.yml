@@ -17,7 +17,12 @@ spring:
       name: application #配置文件名称
       profile: dev #读取后缀名称   上述3个综合：master分支上config-dev.yml的配置文件被读取http://config-3344.com:3344/master/config-dev.yml
       uri: http://localhost:3344 #配置中心地址k
-
+  zipkin: #<-------------------------------------关键
+    base-url: http://localhost:9411
+  sleuth: #<-------------------------------------关键
+    sampler:
+    #采样率值介于 0 到 1 之间，1 则表示全部采集
+    probability: 1
 ---
 server:
   port: 8002
@@ -32,3 +37,9 @@ spring:
       name: application #配置文件名称
       profile: dev #读取后缀名称   上述3个综合：master分支上config-dev.yml的配置文件被读取http://config-3344.com:3344/master/config-dev.yml
       uri: http://localhost:3344 #配置中心地址k
+  zipkin: #<-------------------------------------关键
+    base-url: http://localhost:9411
+  sleuth: #<-------------------------------------关键
+    sampler:
+    #采样率值介于 0 到 1 之间，1 则表示全部采集
+    probability: 1

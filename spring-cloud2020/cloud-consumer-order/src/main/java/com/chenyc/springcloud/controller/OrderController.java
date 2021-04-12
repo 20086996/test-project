@@ -148,4 +148,12 @@ public class OrderController {
         return "Global异常处理信息，请稍后再试，/(ㄒoㄒ)/~~";
     }
 
+/*********************************************zipkin测试*************************************************************************/
+    @GetMapping("/payment/zipkin")
+    public String paymentZipkin()
+    {
+        String result = restTemplate.getForObject(PAYMENY_URL+"/payment/zipkin/", String.class);
+        return result;
+    }
+
 }

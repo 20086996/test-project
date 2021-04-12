@@ -125,5 +125,9 @@ public class PaymentController{
         return configInfo;
     }
 
-
+/*********************************************zipkin测试*************************************************************************/
+    @GetMapping("/payment/zipkin")
+    public String paymentZipkin() {
+        return "hi ,i'am paymentzipkin server fall back，welcome to here, O(∩_∩)O哈哈~";
+    }
 }
