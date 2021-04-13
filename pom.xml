@@ -25,6 +25,7 @@
         <module>spring-cloud2020</module>
         <module>springboot-demo</module>
         <module>cloud-hystrix-dashboard</module>
+        <module>mybatis</module>
     </modules>
 
     <properties>

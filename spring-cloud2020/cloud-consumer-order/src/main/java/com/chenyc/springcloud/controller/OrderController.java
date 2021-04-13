@@ -4,12 +4,15 @@ import com.chenyc.springcloud.entities.CommonResult;
 import com.chenyc.springcloud.entities.Payment;
 import com.chenyc.springcloud.lb.LoadBalancer;
 import com.chenyc.springcloud.openFeign.PaymentFeignService;
+import com.chenyc.springcloud.po.Greetings;
+import com.chenyc.springcloud.service.GreetingsService;
 import com.netflix.hystrix.contrib.javanica.annotation.DefaultProperties;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -45,6 +48,9 @@ public class OrderController {
 
     @Autowired
     PaymentFeignService paymentFeignService;
+
+    @Autowired
+    GreetingsService greetingsService;
 
     @PostMapping("/payment/create")
     public CommonResult<Payment> create (@RequestBody Payment payment){
@@ -154,6 +160,16 @@ public class OrderController {
     {
         String result = restTemplate.getForObject(PAYMENY_URL+"/payment/zipkin/", String.class);
         return result;
+    }
+
+    @GetMapping("/greetings")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void greetings(@RequestParam("message") String message) {
+        Greetings greetings = Greetings.builder()
+                .message(message)
+                .timestamp(System.currentTimeMillis())
+                .build();
+        greetingsService.sendGreeting(greetings);
     }
 
 }

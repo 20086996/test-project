@@ -1,5 +1,6 @@
 package com.chenyc.springcloud;
 
+import com.chenyc.springcloud.config.GreetingsStreams;
 import com.netflix.hystrix.contrib.metrics.eventstream.HystrixMetricsStreamServlet;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,6 +8,7 @@ import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.context.annotation.Bean;
 
 /**
@@ -17,6 +19,7 @@ import org.springframework.context.annotation.Bean;
 @EnableEurekaClient
 @EnableDiscoveryClient//添加该注解
 @EnableCircuitBreaker//添加到此处
+@EnableBinding(GreetingsStreams.class)
 public class PaymentApplication {
     public static void main(String[] args) {
         SpringApplication.run(PaymentApplication.class, args);
